@@ -2,7 +2,7 @@
 /*
 Plugin Name: Disqus latest comments addon
 Description: Displays the latest Disqus comments for a website.
-Version: 1.0
+Version: 1.1
 Author: Adrian Gordon
 Author URI: http://www.itsupportguides.com 
 License: GPLv2
@@ -23,7 +23,7 @@ else {
 	}
 	
 if (get_option('hide_avatars')) {
-    $hide_avatars = get_option('hide_avatars');
+    $hide_avatars = '1';
 	}
 else {
     $hide_avatars = '0';
@@ -33,7 +33,7 @@ if (get_option('avatar_size')) {
     $avatar_size = get_option('avatar_size');
 	}
 else {
-    $avatar_size = '40';
+    $avatar_size = '35';
 	}
 	
 if (get_option('excerpt_length')) {
@@ -41,6 +41,13 @@ if (get_option('excerpt_length')) {
 	}
 else {
     $excerpt_length = '200';
+	}
+
+if (get_option('bypass_cache')) {
+    $bypass_cache = true;
+	}
+else {
+    $bypass_cache = false;
 	}
 	
 /** Styles **/
@@ -162,7 +169,7 @@ if (get_option('style') == "Blue") {
 <?php }
 /** If Disqus shortname has been configured **/
 if (get_option('disqus_shortname')) { ?>  
-<script type="text/javascript" src="http://<?php echo get_option('disqus_shortname'); ?>.disqus.com/recent_comments_widget.js?num_items=<?php echo $num_items ?>&hide_avatars=<?php echo $hide_avatars ?>&avatar_size=<?php $avatar_size ?>&excerpt_length=<?php $excerpt_length?>"></script>
+<script type="text/javascript" src="http://<?php echo get_option('disqus_shortname'); ?>.disqus.com/recent_comments_widget.js?num_items=<?php echo $num_items ?><?php if (get_option('hide_avatars')) echo '&hide_avatars='.$hide_avatars ?>&avatar_size=<?php echo $avatar_size ?>&excerpt_length=<?php echo $excerpt_length?><?php if (get_option('bypass_cache')) echo '&rand='.mt_rand() ?>"></script>
 <?php
 } else 
 /** If Disqus shortname has NOT been configured **/
@@ -207,6 +214,9 @@ function disqus_latest_comments_options() {
 				
 		$style = $_POST['style'];
         update_option('style', $style);
+		
+		$bypass_cache = $_POST['bypass_cache'];
+        update_option('bypass_cache', $bypass_cache);		
 
     } else {
 
@@ -221,6 +231,8 @@ function disqus_latest_comments_options() {
 		$excerpt_length = get_option('excerpt_length');
 		
 		$style = get_option('style');
+		
+		$bypass_cache = get_option('bypass_cache');
 		
     }
 
@@ -251,7 +263,7 @@ function disqus_latest_comments_options() {
 </tr>
 <tr>
 <th scope="row"><?php _e("Avatar size:" ); ?></th>
-<td><input type="number" name="avatar_size" min="1" max="200" value="<?php echo $avatar_size; ?>" size="20"></td>
+<td><select name='avatar_size'><option value='35' <?php if($avatar_size=='35'){echo 'selected';}?>>35px</option><option value='48' <?php if($avatar_size=='48'){echo 'selected';}?>>48px</option><option value='92' <?php if($avatar_size=='92'){echo 'selected';}?>>92px</option></select></td>
 </tr>
 <tr>
 <th scope="row"><?php _e("Excerpt length:" ); ?></th>
@@ -260,6 +272,10 @@ function disqus_latest_comments_options() {
 <tr>
 <th scope="row"><?php _e("Style:" ); ?></th>
 <td><select name='style'><option value='0' <?php if($style=='None'){echo 'selected';}?>>None</option><option value='Grey' <?php if($style=='Grey'){echo 'selected';}?>>Grey</option><option value='Blue' <?php if($style=='Blue'){echo 'selected';}?>>Blue</option><option value='Green' <?php if($style=='Green'){echo 'selected';}?>>Green</option></select></td>
+</tr>
+<tr>
+<th scope="row"><?php _e("Bypass Cache:" ); ?></th>
+<td><select name='bypass_cache'><option value='0' <?php if($bypass_cache=='0'){echo 'selected';}?>>No</option><option value='1' <?php if($bypass_cache=='1'){echo 'selected';}?>>Yes</option></select></td>
 </tr>
 </tbody>
 </table>
@@ -275,6 +291,5 @@ function disqus_latest_comments_options() {
 </div>
 <?php
 }
-
 
 ?>

@@ -3,8 +3,8 @@ Contributors: ovann86
 Donate link: http://www.itsupportguides.com/
 Tags: comments, disqus, latest, shortcode
 Requires at least: 4.0
-Tested up to: 4.0
-Stable tag: 4.0
+Tested up to: 4.0.1
+Stable tag: 1.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,8 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 
 'Style' - This allows you to select three different styles for the comments - grey, green and blue. You may also choose none.
 
+'Bypass Cache' - This option can be used if a website is caching the page or post the comments are being displayed on, or the website is caching the Disqus API request. 
+
 = What are the default values =
 
 'Disqus Shortname' is required - there is no default. A warning message will be displayed instead of the comments scren if you do not specify a shortname.
@@ -64,12 +66,19 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 
 'Style' - None
 
+'Bypass Cache' - 35px
+
 == Screenshots ==
 
 1. This screen shot shows the comments that are displayed on the front end with the 'Grey' style applied.
 2. This screen shot shows the options for configuring the plugin.
 
 == Changelog ==
+
+= 1.1 =
+* Added 'Bypass Cache' option in case website caches Disqus API requests.
+* Resolved issue with Avatar Size and Excerpt Length not working.
+* Changed Avatar Size to use only the three supported Disqus avatar sizes - 35px, 34px and 92px.
 
 = 1.0 =
 * First public release.
