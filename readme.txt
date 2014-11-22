@@ -60,13 +60,13 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 
 'Hide avatars' - Off - avatars will be displayed
 
-'Avatar size' - 40 pixels
+'Avatar size' - 35 pixels
 
 'Except length' - 200 characters 
 
 'Style' - None
 
-'Bypass Cache' - 35px
+'Bypass Cache' - No
 
 == Screenshots ==
 
