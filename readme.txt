@@ -4,17 +4,17 @@ Donate link: http://www.itsupportguides.com/
 Tags: comments, disqus, latest, shortcode
 Requires at least: 4.0
 Tested up to: 4.1
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin will allow you to list your websites latest comments in a page or post.
+List your websites latest Disqus comments in a page, post or widget
 
 == Description ==
 
-This plugin will allow you to list your websites latest Disqus comments in a page or post.
+This plugin will allow you to list your websites latest Disqus comments in a page, post or widget.
 
-Simply install and activate the plugin, browse to 'Comments' -> 'Disqus Latest Comments' menu, add in your Disqus shortname, then include the [disqus-latest] shortcode in the page or post of your choosing.
+Simply install and activate the plugin, browse to 'Comments' -> 'Disqus Latest Comments' menu, add in your Disqus shortname, then include the [disqus-latest] shortcode in the page, post or widget of your choosing.
 
 You can see a working example of the plugin at [www.itsupportguides.com](http://www.itsupportguides.com/latest-comments/ "www.itsupportguides.com latest comments").
 
@@ -70,20 +70,19 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 
 == Screenshots ==
 
-1. This screen shot shows the comments that are displayed on the front end with the 'Grey' style applied.
-2. This screen shot shows the options for configuring the plugin.
+1. This screenshot shows the comments that are displayed on the front end with the 'Grey' style applied.
+2. This screenshot shows the options for configuring the plugin.
 
 == Changelog ==
 
+= 1.2 =
+* Fix: Resolved issue with using shortcode in widget areas - where comments would appear before the widget title.
+* Maintenance: Tidy plugin code.
+
 = 1.1 =
-* Added 'Bypass Cache' option in case website caches Disqus API requests.
-* Resolved issue with Avatar Size and Excerpt Length not working.
-* Changed Avatar Size to use only the three supported Disqus avatar sizes - 35px, 34px and 92px.
+* Feature: Added 'Bypass Cache' option in case website caches Disqus API requests.
+* Fix: Resolved issue with Avatar Size and Excerpt Length not working.
+* Fix: Changed Avatar Size to use only the three supported Disqus avatar sizes - 35px, 34px and 92px.
 
 = 1.0 =
 * First public release.
-
-== Upgrade Notice ==
-
-= 1.0 =
-First public release.
