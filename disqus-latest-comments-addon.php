@@ -2,7 +2,7 @@
 /*
 Plugin Name: Disqus latest comments addon
 Description: Displays the latest Disqus comments for a website.
-Version: 1.3
+Version: 1.3.1
 Author: Adrian Gordon
 Author URI: http://www.itsupportguides.com 
 License: GPLv2
