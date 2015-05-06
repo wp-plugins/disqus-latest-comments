@@ -454,7 +454,7 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 					jQuery(function ($) {
 						$('.dsq-widget-list').ready(function() {
 							$("ul.dsq-widget-list p.dsq-widget-meta").each(function() {
-								var text = $(this).text();
+								var text = $(this).html();
 								<?php if ($disqus_minute_ago) echo 'text = text.replace("minute ago", "'.$disqus_minute_ago.'");' ?>
 								<?php if ($disqus_minutes_ago) echo 'text = text.replace("minutes ago", "'.$disqus_minutes_ago.'");' ?>
 								<?php if ($disqus_hour_ago) echo 'text = text.replace("hour ago", "'.$disqus_hour_ago.'");' ?>
@@ -467,7 +467,7 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 								<?php if ($disqus_months_ago) echo 'text = text.replace("months ago", "'.$disqus_months_ago.'");' ?>;
 								<?php if ($disqus_year_ago) echo 'text = text.replace("year ago", "'.$disqus_year_ago.'");' ?>
 								<?php if ($disqus_years_ago) echo 'text = text.replace("years ago", "'.$disqus_years_ago.'");' ?>;
-								$(this).text(text);
+								$(this).html(text);
 							});
 						});
 					});

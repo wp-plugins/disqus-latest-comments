@@ -4,7 +4,7 @@ Donate link: http://www.itsupportguides.com/
 Tags: comments, disqus, latest, shortcode
 Requires at least: 4.0
 Tested up to: 4.2.1
-Stable tag: 1.3
+Stable tag: 1.3.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,9 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 3. This screenshot shows the options for translating the Disqus time terms.
 
 == Changelog ==
+
+= 1.3.1 =
+* Fix: Resolve issue with translation feature unlinking translated text.
 
 = 1.3 =
 * Feature: Added translation options to translate Disqus time terms (for example 'days ago').
