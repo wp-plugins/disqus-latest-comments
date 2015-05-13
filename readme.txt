@@ -3,8 +3,8 @@ Contributors: ovann86
 Donate link: http://www.itsupportguides.com/
 Tags: comments, disqus, latest, shortcode
 Requires at least: 4.0
-Tested up to: 4.2.1
-Stable tag: 1.3.1
+Tested up to: 4.2.2
+Stable tag: 1.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,7 @@ The configuration and options can be found in the WordPress administration. Brow
 * A choice of three pre-configured styles - grey, blue and green
 * Ability to bypass caching (for debugging or attempting to bypass any caching plugins you may have installed)
 * Ability to translate Disqus time terms (for example 'days ago')
+* Ability to make linked Disqus usernames open in a new window (target='_blank')
 
 You can see a working example of the plugin at [www.itsupportguides.com](http://www.itsupportguides.com/latest-comments/ "www.itsupportguides.com latest comments").
 
@@ -88,8 +89,8 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 
 == Changelog ==
 
-= 1.3.1 =
-* Fix: Resolve issue with translation feature unlinking translated text.
+= 1.4 =
+* Feature: Added ability to make linked Disqus usernames open in a new window (target='_blank'). Enabled from options by ticking 'Open Disqus usernames in new window'.
 
 = 1.3 =
 * Feature: Added translation options to translate Disqus time terms (for example 'days ago').
