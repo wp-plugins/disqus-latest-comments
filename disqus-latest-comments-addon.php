@@ -2,7 +2,7 @@
 /*
 Plugin Name: Disqus latest comments addon
 Description: Displays the latest Disqus comments for a website.
-Version: 1.2
+Version: 1.3
 Author: Adrian Gordon
 Author URI: http://www.itsupportguides.com 
 License: GPLv2
@@ -27,6 +27,8 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 
 			/** register shortcode 'disqus-latest' **/
 			add_shortcode('disqus-latest', array(&$this,'itsg_disqus_lastest_comments_addon_shortcode'));
+			
+			add_action('wp_footer', array(&$this,'itsg_disqus_lastest_comments_addon_change_text_js_script'));
 		}
 
 		/* 
@@ -72,6 +74,7 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 			
 		/** Styles **/
 		if (get_option('style') == "Grey") {
+
 		$html .= "		<style>
 						.dsq-widget-user{
 						text-decoration:none;
@@ -146,7 +149,8 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 			</style> ";
 			}	
 			if (get_option('style') == "Green") { 
-		$html .= "		<style>
+		$html .= "
+		<style>
 						.dsq-widget-user{
 						text-decoration:none;
 						display:block;
@@ -181,31 +185,27 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 						.dsq-widget-avatar{
 						border-radius:100px;
 						}
+
 			</style> ";
 		 }
 		/** If Disqus shortname has been configured **/
 		if (get_option('disqus_shortname')) {
 			$html .= '<script type="text/javascript" src="http://'. get_option('disqus_shortname') .'.disqus.com/recent_comments_widget.js?num_items='. $num_items .'&hide_avatars='.$hide_avatars .'&avatar_size='. $avatar_size .'&excerpt_length='.$excerpt_length.'&rand='.mt_rand().'"></script>';
-		} else  { 
+			} else  { 
 			/** If Disqus shortname has NOT been configured **/
 			$html .= "
 			<p><strong>Disqus Latest Comments - Configuration required</strong></p>
 			<p>Log into the WordPress admin, open <strong>Comments - > Disqus Latest Comments</strong> and add the shortname for the websites Disqus account.</p> ";
 			}
-			
 		return $html;
 		}
 	
-		/* 
-		 *   Back end - menu option
-		 */
+		/** Back end - menu */
 		public function itsg_disqus_lastest_comments_addon_admin_menu() {
 			add_comments_page( 'Disqus Latest Comments', 'Disqus Latest Comments', 'manage_options', 'disqus-latest-comments', array(&$this,'itsg_disqus_lastest_comments_addon_options'));
 		}
 		
-		/* 
-		 *   Back end - plugins options
-		 */
+		/** Back end - form */
 		public function itsg_disqus_lastest_comments_addon_options() {
 			if ( !current_user_can( 'manage_options' ) )  {
 				wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
@@ -232,7 +232,43 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 				update_option('style', $style);
 				
 				$bypass_cache = $_POST['bypass_cache'];
-				update_option('bypass_cache', $bypass_cache);		
+				update_option('bypass_cache', $bypass_cache);
+				
+				$disqus_minute_ago = $_POST['disqus_minute_ago'];
+				update_option('disqus_minute_ago', $disqus_minute_ago);
+				
+				$disqus_minutes_ago = $_POST['disqus_minutes_ago'];
+				update_option('disqus_minutes_ago', $disqus_minutes_ago);
+				
+				$disqus_hour_ago = $_POST['disqus_hour_ago'];
+				update_option('disqus_hour_ago', $disqus_hour_ago);
+				
+				$disqus_hours_ago = $_POST['disqus_hours_ago'];
+				update_option('disqus_hours_ago', $disqus_hours_ago);
+				
+				$disqus_day_ago = $_POST['disqus_day_ago'];
+				update_option('disqus_day_ago', $disqus_day_ago);
+				
+				$disqus_days_ago = $_POST['disqus_days_ago'];
+				update_option('disqus_days_ago', $disqus_days_ago);
+				
+				$disqus_week_ago = $_POST['disqus_week_ago'];
+				update_option('disqus_week_ago', $disqus_week_ago);
+				
+				$disqus_weeks_ago = $_POST['disqus_weeks_ago'];
+				update_option('disqus_weeks_ago', $disqus_weeks_ago);
+				
+				$disqus_month_ago = $_POST['disqus_month_ago'];
+				update_option('disqus_month_ago', $disqus_month_ago);
+				
+				$disqus_months_ago = $_POST['disqus_months_ago'];
+				update_option('disqus_months_ago', $disqus_months_ago);
+				
+				$disqus_year_ago = $_POST['disqus_year_ago'];
+				update_option('disqus_year_ago', $disqus_year_ago);
+				
+				$disqus_years_ago = $_POST['disqus_years_ago'];
+				update_option('disqus_years_ago', $disqus_years_ago);
 
 			} else {
 
@@ -243,6 +279,18 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 				$excerpt_length = get_option('excerpt_length');
 				$style = get_option('style');
 				$bypass_cache = get_option('bypass_cache');
+				
+				$disqus_minute_ago = get_option('disqus_minute_ago');
+				$disqus_minutes_ago = get_option('disqus_minutes_ago');
+				$disqus_hour_ago = get_option('disqus_hour_ago');
+				$disqus_hours_ago = get_option('disqus_hours_ago');
+				$disqus_week_ago = get_option('disqus_week_ago');
+				$disqus_weeks_ago = get_option('disqus_weeks_ago');
+				$disqus_month_ago = get_option('disqus_month_ago');
+				$disqus_months_ago = get_option('disqus_months_ago');
+				$disqus_year_ago = get_option('disqus_year_ago');
+				$disqus_years_ago = get_option('disqus_years_ago');
+				
 			}
 
 			$hidden_field_name = 'mt_submit_hidden';
@@ -291,10 +339,143 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 					<p class="submit">
 					<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
 					</p>
+					
+					<h3>Translate options</h3>
+					<p><?php _e('These options allow you to translate the time terms used by Disqus.'); ?></p>
+					<table class="form-table">
+						<tbody>
+					<tr>
+						<th scope="row"><?php _e("Minute ago:" ); ?></th>
+						<td><input type="text" name="disqus_minute_ago" value="<?php echo $disqus_minute_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Minutes ago:" ); ?></th>
+						<td><input type="text" name="disqus_minutes_ago" value="<?php echo $disqus_minutes_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Hour ago:" ); ?></th>
+						<td><input type="text" name="disqus_hour_ago" value="<?php echo $disqus_hour_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Hours ago:" ); ?></th>
+						<td><input type="text" name="disqus_hours_ago" value="<?php echo $disqus_hours_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Day ago:" ); ?></th>
+						<td><input type="text" name="disqus_day_ago" value="<?php echo $disqus_day_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Days ago:" ); ?></th>
+						<td><input type="text" name="disqus_days_ago" value="<?php echo $disqus_days_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Week ago:" ); ?></th>
+						<td><input type="text" name="disqus_week_ago" value="<?php echo $disqus_week_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Weeks ago:" ); ?></th>
+						<td><input type="text" name="disqus_weeks_ago" value="<?php echo $disqus_weeks_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Month ago:" ); ?></th>
+						<td><input type="text" name="disqus_month_ago" value="<?php echo $disqus_month_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Months ago:" ); ?></th>
+						<td><input type="text" name="disqus_months_ago" value="<?php echo $disqus_months_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Year ago:" ); ?></th>
+						<td><input type="text" name="disqus_year_ago" value="<?php echo $disqus_year_ago; ?>" size="20">
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php _e("Years ago:" ); ?></th>
+						<td><input type="text" name="disqus_years_ago" value="<?php echo $disqus_years_ago; ?>" size="20">
+						</td>
+					</tr>
+					</tbody>
+					</table>
+					
+					<p class="submit">
+					<input type="submit" name="Submit" class="button-primary" value="<?php esc_attr_e('Save Changes') ?>" />
+					</p>
+					<hr />
 				</form>
 			</div>
 			<?php
 			}
+			
+		
+		/*
+		 * jQuery that changes Disqus time terms
+		 */
+		public function itsg_disqus_lastest_comments_addon_change_text_js_script() {
+			$disqus_minute_ago = get_option('disqus_minute_ago');
+			$disqus_minutes_ago = get_option('disqus_minutes_ago');
+			$disqus_hour_ago = get_option('disqus_hour_ago');
+			$disqus_hours_ago = get_option('disqus_hours_ago');
+			$disqus_day_ago = get_option('disqus_day_ago');
+			$disqus_days_ago = get_option('disqus_days_ago');
+			$disqus_week_ago = get_option('disqus_week_ago');
+			$disqus_weeks_ago = get_option('disqus_weeks_ago');
+			$disqus_month_ago = get_option('disqus_month_ago');
+			$disqus_months_ago = get_option('disqus_months_ago');
+			$disqus_year_ago = get_option('disqus_year_ago');
+			$disqus_years_ago = get_option('disqus_years_ago');
+			
+			
+			if (
+				$disqus_minute_ago ||
+				$disqus_minutes_ago ||
+				$disqus_hour_ago ||
+				$disqus_hours_ago ||
+				$disqus_day_ago ||
+				$disqus_days_ago ||
+				$disqus_week_ago ||
+				$disqus_weeks_ago ||
+				$disqus_month_ago ||
+				$disqus_months_ago ||
+				$disqus_year_ago ||
+				$disqus_years_ago 			
+			) {
+			?>
+				<script>
+					jQuery(function ($) {
+						$('.dsq-widget-list').ready(function() {
+							$("ul.dsq-widget-list p.dsq-widget-meta").each(function() {
+								var text = $(this).text();
+								<?php if ($disqus_minute_ago) echo 'text = text.replace("minute ago", "'.$disqus_minute_ago.'");' ?>
+								<?php if ($disqus_minutes_ago) echo 'text = text.replace("minutes ago", "'.$disqus_minutes_ago.'");' ?>
+								<?php if ($disqus_hour_ago) echo 'text = text.replace("hour ago", "'.$disqus_hour_ago.'");' ?>
+								<?php if ($disqus_hours_ago) echo 'text = text.replace("hours ago", "'.$disqus_hours_ago.'");' ?>
+								<?php if ($disqus_day_ago) echo 'text = text.replace("day ago", "'.$disqus_day_ago.'");' ?>
+								<?php if ($disqus_days_ago) echo 'text = text.replace("days ago", "'.$disqus_days_ago.'");' ?>
+								<?php if ($disqus_week_ago) echo 'text = text.replace("week ago", "'.$disqus_week_ago.'");' ?>
+								<?php if ($disqus_weeks_ago) echo 'text = text.replace("weeks ago", "'.$disqus_weeks_ago.'");' ?>
+								<?php if ($disqus_month_ago) echo 'text = text.replace("month ago", "'.$disqus_month_ago.'");' ?>
+								<?php if ($disqus_months_ago) echo 'text = text.replace("months ago", "'.$disqus_months_ago.'");' ?>;
+								<?php if ($disqus_year_ago) echo 'text = text.replace("year ago", "'.$disqus_year_ago.'");' ?>
+								<?php if ($disqus_years_ago) echo 'text = text.replace("years ago", "'.$disqus_years_ago.'");' ?>;
+								$(this).text(text);
+							});
+						});
+					});
+					
+				</script>
+			<?php			
+			}
+        } // END itsg_disqus_lastest_comments_addon_change_text_js_script
 
 	}
     $ITSG_Disqus_Latest_Comments_Addon = new ITSG_Disqus_Latest_Comments_Addon();

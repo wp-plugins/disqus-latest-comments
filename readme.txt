@@ -3,8 +3,8 @@ Contributors: ovann86
 Donate link: http://www.itsupportguides.com/
 Tags: comments, disqus, latest, shortcode
 Requires at least: 4.0
-Tested up to: 4.1
-Stable tag: 1.2
+Tested up to: 4.2.1
+Stable tag: 1.3
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,17 @@ List your websites latest Disqus comments in a page, post or widget
 This plugin will allow you to list your websites latest Disqus comments in a page, post or widget.
 
 Simply install and activate the plugin, browse to 'Comments' -> 'Disqus Latest Comments' menu, add in your Disqus shortname, then include the [disqus-latest] shortcode in the page, post or widget of your choosing.
+
+The configuration and options can be found in the WordPress administration. Browser to 'Comments' -> 'Disqus Latest Comments'.
+
+Options are available for:
+*  Number of comments listed
+*  To show avatars
+*  Size of avatar images
+*  Excerpt length (length of comment shown in widget)
+*  A choice of three pre-configured styles - grey, blue and green
+*  Ability to bypass caching (for debugging or attempting to bypass any caching plugins you may have installed)
+*  Ability to translate Disqus time terms (for example 'days ago')
 
 You can see a working example of the plugin at [www.itsupportguides.com](http://www.itsupportguides.com/latest-comments/ "www.itsupportguides.com latest comments").
 
@@ -72,8 +83,12 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 
 1. This screenshot shows the comments that are displayed on the front end with the 'Grey' style applied.
 2. This screenshot shows the options for configuring the plugin.
+3. This screenshot shows the options for translating the Disqus time terms.
 
 == Changelog ==
+
+= 1.3 =
+* Feature: Added translation options to transate Disqus time terms (for example 'days ago').
 
 = 1.2 =
 * Fix: Resolved issue with using shortcode in widget areas - where comments would appear before the widget title.
