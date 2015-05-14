@@ -2,7 +2,7 @@
 /*
 Plugin Name: Disqus latest comments addon
 Description: Displays the latest Disqus comments for a website.
-Version: 1.4
+Version: 1.4.1
 Author: Adrian Gordon
 Author URI: http://www.itsupportguides.com 
 License: GPLv2
@@ -868,7 +868,21 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 			
 			$disqus_target_blank = get_option('disqus_target_blank');
 
-				
+			if ($disqus_target_blank) { ?>
+				<script type='text/javascript'>
+				(function ($) {
+					'use strict';
+					$('.dsq-widget-list a').each(function() {
+								var href = $(this).attr("href");
+								if (href) {
+								if (href.indexOf(window.location.host)==-1) {
+									$(this).attr('target', '_blank');
+								}
+								}
+							});
+				}(jQuery));
+				</script>		
+			<?php }
 
 			if (
 
@@ -894,9 +908,7 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 
 				$disqus_year_ago ||
 
-				$disqus_years_ago 	||
-
-				$disqus_target_blank		
+				$disqus_years_ago	
 
 			) {
 
@@ -907,15 +919,6 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 					jQuery(function ($) {
 
 						$('.dsq-widget-list').ready(function() {
-							
-						<?php  if ($disqus_target_blank) { ?>
-							$('a').each(function() {
-								var href = $(this).attr("href");
-								if (href.indexOf(window.location.host)==-1) {
-									$(this).attr('target', '_blank');
-								}
-							});
-						<?php  } ?>
 
 							$("ul.dsq-widget-list p.dsq-widget-meta").each(function() {
 
@@ -939,11 +942,11 @@ if (!class_exists('ITSG_Disqus_Latest_Comments_Addon')) {
 
 								<?php if ($disqus_month_ago) echo 'text = text.replace("month ago", "'.$disqus_month_ago.'");' ?>
 
-								<?php if ($disqus_months_ago) echo 'text = text.replace("months ago", "'.$disqus_months_ago.'");' ?>;
+								<?php if ($disqus_months_ago) echo 'text = text.replace("months ago", "'.$disqus_months_ago.'");' ?>
 
 								<?php if ($disqus_year_ago) echo 'text = text.replace("year ago", "'.$disqus_year_ago.'");' ?>
 
-								<?php if ($disqus_years_ago) echo 'text = text.replace("years ago", "'.$disqus_years_ago.'");' ?>;
+								<?php if ($disqus_years_ago) echo 'text = text.replace("years ago", "'.$disqus_years_ago.'");' ?>
 
 								$(this).html(text);
 

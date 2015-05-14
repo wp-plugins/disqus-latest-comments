@@ -4,7 +4,7 @@ Donate link: http://www.itsupportguides.com/
 Tags: comments, disqus, latest, shortcode
 Requires at least: 4.0
 Tested up to: 4.2.2
-Stable tag: 1.4
+Stable tag: 1.4.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,6 +88,9 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 3. This screenshot shows the options for translating the Disqus time terms.
 
 == Changelog ==
+
+= 1.4.1 =
+* Fix: Resolve issue introduced in version 1.4.1.
 
 = 1.4 =
 * Feature: Added ability to make linked Disqus usernames open in a new window (target='_blank'). Enabled from options by ticking 'Open Disqus usernames in new window'.
