@@ -4,7 +4,7 @@ Donate link: http://www.itsupportguides.com/
 Tags: comments, disqus, latest, shortcode
 Requires at least: 4.0
 Tested up to: 4.2.2
-Stable tag: 1.4.1
+Stable tag: 1.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ The configuration and options can be found in the WordPress administration. Brow
 * To show avatars
 * Size of avatar images
 * Excerpt length (length of comment shown in widget)
-* A choice of three pre-configured styles - grey, blue and green
+* A choice of three pre-configured styles - grey, blue and green or the ability to use your own custom CSS
 * Ability to bypass caching (for debugging or attempting to bypass any caching plugins you may have installed)
 * Ability to translate Disqus time terms (for example 'days ago')
 * Ability to make linked Disqus usernames open in a new window (target='_blank')
@@ -61,7 +61,7 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 
 'Except length'- This controls the length of the comment displayed on the page.
 
-'Style' - This allows you to select three different styles for the comments - grey, green and blue. You may also choose none.
+'Style' - This allows you to select three different styles for the comments - grey, green and blue. You may also choose none or custom.
 
 'Bypass Cache' - This option can be used if a website is caching the page or post the comments are being displayed on, or the website is caching the Disqus API request. 
 
@@ -81,6 +81,50 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 
 'Bypass Cache' - No
 
+= Example custom CSS style =
+
+The below can be used as a template when creating your own custom style. This can be pasted into the 'Custom CSS' option when the custom style is selected.
+
+/* the entire list */
+.dsq-widget-list {
+display: block;
+}
+
+/* each comment item */
+.dsq-widget-item {
+position: relative;
+}
+
+/* hover over style for each comment item */
+.dsq-widget-item:hover {
+background: #f6f6f6;
+}
+
+/* the avatar image in each comment item */
+.dsq-widget-avatar {
+display:block;
+}
+
+/* the Disqus user name */
+.dsq-widget-user {
+display:block;
+}
+
+/* the comment */
+.dsq-widget-comment {
+display: block;
+}
+
+/* paragraph that contains the link to the post and day */
+.dsq-widget-meta {
+display:block;
+}
+
+/* make the post title bold */
+.dsq-widget-meta a:nth-child(1) {
+font-weight:800;
+}
+
 == Screenshots ==
 
 1. This screenshot shows the comments that are displayed on the front end with the 'Grey' style applied.
@@ -88,6 +132,11 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 3. This screenshot shows the options for translating the Disqus time terms.
 
 == Changelog ==
+
+= 1.5 =
+* Feature: Add 'Custom' option for styles. Allows you to enter your own CSS styles from the configuration screen.
+* Maintenance: Moved CSS load in page footer using wp_footer action.
+* Maintenance: General formatting of plugin code to make it more readable. 
 
 = 1.4.1 =
 * Fix: Resolve issue introduced in version 1.4.1.
