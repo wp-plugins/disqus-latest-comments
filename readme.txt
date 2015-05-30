@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: ovann86
 Donate link: http://www.itsupportguides.com/
-Tags: comments, disqus, latest, shortcode
+Tags: comments, disqus, latest, shortcode, recent
 Requires at least: 4.0
 Tested up to: 4.2.2
 Stable tag: 1.5
@@ -85,45 +85,53 @@ On the 'Comments' -> 'Disqus Latest Comments' page you will find several setting
 
 The below can be used as a template when creating your own custom style. This can be pasted into the 'Custom CSS' option when the custom style is selected.
 
-/* the entire list */
+`/* the entire list */
+
 .dsq-widget-list {
 display: block;
 }
 
 /* each comment item */
+
 .dsq-widget-item {
 position: relative;
 }
 
 /* hover over style for each comment item */
+
 .dsq-widget-item:hover {
 background: #f6f6f6;
 }
 
 /* the avatar image in each comment item */
+
 .dsq-widget-avatar {
 display:block;
 }
 
 /* the Disqus user name */
+
 .dsq-widget-user {
 display:block;
 }
 
 /* the comment */
+
 .dsq-widget-comment {
 display: block;
 }
 
 /* paragraph that contains the link to the post and day */
+
 .dsq-widget-meta {
 display:block;
 }
 
 /* make the post title bold */
+
 .dsq-widget-meta a:nth-child(1) {
 font-weight:800;
-}
+}`
 
 == Screenshots ==
 
